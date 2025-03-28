@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   parcing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/20 11:47:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/28 17:58:17 by armosnie         ###   ########.fr       */
+/*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
+/*   Updated: 2025/03/28 18:00:28 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# define STDIN 0
-# define STDOUT 1
+#include "pipex.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <stdio.h>
-
-typedef struct s_struct
+int ft_strcmp(char *s1, char *s2)
 {
-    
-}   s_struct;
+    int i;
 
-// parcing functions
-
-int ft_strcmp(char *s1, char *s2);
-
-#endif
+    i = 0;
+    while (s1[i] && s2[i] && s1[i] != s2[i])
+        i++;
+    return (s2[i] - s2[i]);
+}
