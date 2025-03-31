@@ -6,11 +6,24 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:26:10 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/28 16:21:35 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:57:06 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	free_array(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
 
 int	count_words(char *s, char c)
 {
