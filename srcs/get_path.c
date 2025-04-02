@@ -6,37 +6,25 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/01 17:05:34 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:01:42 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-char	*ft_strjoin(char *path, char *cmd)
+char	*join_path(char *path, char *cut_cmd)
 {
-	char	*join;
-	int		i;
-	int		j;
+    char *add_slash;
+    char *full_path;
 
-	i = 0;
-	j = 0;
-	join = malloc(sizeof(char) * (ft_strlen(path) + ft_strlen(cmd) + 1));
-	if (join == NULL)
-		return (NULL);
-	while (path[i])
-	{
-		join[i] = path[i];
-		i++;
-	}
-	while (cmd[j])
-	{
-		join[i + j] = cmd[j];
-		j++;
-	}
-	return (join);
+    add_slash = ft_strjoin(path, "/");
+    if (add_slash == NULL)
+        return (NULL);
+    full_path = ft_strjoin(add_slash, cut_cmd);
+    return (full_path);
 }
 
-char    **get_path(char **argv, char **envp)
+char    **get_path(char **envp)
 {
     char **path;
     char *target_path;
@@ -45,9 +33,9 @@ char    **get_path(char **argv, char **envp)
     i = 0;
     while(envp[i])
     {
-        if (ft_strncmp("PATH=", envp[i], 5))
+        if (ft_strncmp(envp[i], "PATH=", 5) == 0)
         {
-            target_path = envp[i] + 5;
+            target_path = envp[i];
         }
         i++;
     }
@@ -55,77 +43,44 @@ char    **get_path(char **argv, char **envp)
         ft_error("no path found\n");
     path = ft_split(target_path, ':');
     if (path == NULL)
-        return (EXIT_FAILURE);
+        ft_error("path error\n");
     return (path);
 }
 
-char    **get_argv_splited(char **argv, char **envp)
+char   *try_access(char **path, char *cut_cmd)
 {
+    char *full_path;
     int i;
-
-    i = 1;
-    while (argv[i + 1] != NULL)
-    {
-        argv[i] = ft_split(argv[i], ' ');
-        if (argv[i] == NULL)
-            ft_error("argv split error\n");
-        i++;
-    }
-    return (argv);
-}
-
-void   exec_cmd(char **argv, char **envp)
-{
-    char **path;
-    char *tmp;
-    char *cmd_path;
-    int i;
-
-    i = 0;
-    path = get_path(argv, envp);
-    argv = get_argv_splited(argv, envp);
     
+    i = 0;    
     while (path[i])
     {
-        tmp = ft_strjoin(path[i], '/');
-        cmd_path = ft_strjoin(tmp, argv[]);
+        full_path = join_path(path[i], cut_cmd);
+        if (full_path == NULL)
+            return (NULL);
+        if ((access(full_path, F_OK | X_OK)) == 0)
+            return (full_path);
+        free(full_path);
+        i++;
     }
+    return (NULL);
 }
 
-char    *add_slash(char *path, char *cmd_path)
-
-int main(int ac, char **av, char **envp)
+char    *get_command_path(char *cmd, char **envp)
 {
-    if (ac > 1)
+    char **cut_cmd;
+    char **path;
+    char *cmd_path;
+    
+    path = get_path(envp);
+    cut_cmd = ft_split(cmd, ' ');
+    if (cut_cmd == NULL)
     {
-        get_path(&av[1], envp);
+        free_array(path);
+        return (NULL);        
     }
-    return (1);
+    cmd_path = try_access(path, cut_cmd[0]);
+    free_array(path);
+    free_array(cut_cmd);
+    return (cmd_path);
 }
-
-// void    get_path(char **argv, char **envp)
-// {
-//     char **path;
-//     int i;
-//     char *tmp;
-//     char *cmd_path;
-
-//     path = ft_split(find_path("PATH=", envp), ':');
-
-//     i = 0;
-//     while (path[i])
-//     {
-//         tmp = ft_strjoin(path[i], "/");
-//         cmd_path = ft_strjoin(tmp, argv[0]);
-//         free(tmp);
-//         if ((access(cmd_path, X_OK)) == 0)
-//         {
-//             execve(cmd_path, argv, envp);
-//             free(cmd_path);
-//             ft_error("execve error\n");
-//         }
-//         free(cmd_path);
-//         i++;
-//     }
-//     free_array(path);
-// }

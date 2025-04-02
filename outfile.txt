@@ -1,1 +1,8 @@
-oui ok
+total 16
+drwxr-xr-x 2 armosnie 2024_paris   21 Apr  1 14:33 includes
+-rw-r--r-- 1 armosnie 2024_paris   74 Mar 31 12:00 infile.txt
+drwxr-xr-x 3 armosnie 2024_paris 4096 Apr  2 15:42 libft
+-rw-r--r-- 1 armosnie 2024_paris  602 Apr  2 15:37 Makefile
+-rw-r--r-- 1 armosnie 2024_paris    2 Apr  2 15:53 outfile
+-rw-r--r-- 1 armosnie 2024_paris    0 Apr  2 15:58 outfile.txt
+drwxr-xr-x 2 armosnie 2024_paris  107 Apr  2 15:43 srcs

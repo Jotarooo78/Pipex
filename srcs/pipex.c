@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:19:35 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/01 14:37:13 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:12:21 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    pipex(int argc, char **argv, char **envp)
     else if (pid == 0)
     {
         close(fd[0]);
-        get_path(&argv[1], envp);
+        
     }
 
 }
