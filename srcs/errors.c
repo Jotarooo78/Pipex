@@ -19,3 +19,4 @@ int ft_error(char *str)
     exit(EXIT_FAILURE);
 }
 
+
