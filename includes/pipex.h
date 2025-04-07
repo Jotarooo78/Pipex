@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:47:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/07 11:38:30 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/07 16:11:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include <fcntl.h>
 #include <stdbool.h>
 
 # define  EXIT_FAILURE 1
@@ -25,20 +26,20 @@
 
 typedef struct s_data
 {
+    pid_t   *pid;
     int index;
     char **envp;
     char **argv;
     int argc;
-    char *infile;
-    char *outfile;
     
 }   s_data;
 
 // parcing functions
 
-char	**ft_split(const char *s, char c);
+s_data    *init_variable(int argc, char **argv, char **envp);
 void	free_array(char **split);
 int ft_error(char *str);
+void    pipe_function(int fd[2], s_data *data);
 char    *get_command_path(char *cmd, char **envp);
 
 

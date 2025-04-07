@@ -13,6 +13,18 @@
 
 #include "../includes/pipex.h"
 
+void    free_variable(s_data *data)
+{
+    int i;
+
+    i = 0;
+    if (data == NULL)
+        return ;
+    if (data->pids != NULL)
+        free(data->pids);
+    free(data);
+}
+
 void    free_array(char **array)
 {
     int i;
@@ -29,5 +41,4 @@ void    free_array(char **array)
 int ft_error(char *str)
 {
     perror(str);
-    exit(EXIT_FAILURE);
 }

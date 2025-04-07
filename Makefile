@@ -2,7 +2,7 @@ NAME = pipex
 
 CC = cc
 
-SRCS = srcs/errors.c srcs/get_path.c
+SRCS = srcs/errors.c srcs/get_path.c srcs/main.c srcs/pipex.c
 INCLUDES = includes/pipex.h libft/libft.h
 
 LIBFT_DIR = libft

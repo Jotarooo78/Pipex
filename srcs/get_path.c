@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/07 11:40:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:45:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int    exec(char **path, char *cmd_cut, char **cmd, char **envp)
 }
 
 
-void    exe_my_cmd(char *cmd, char **envp)
+void    exe_my_cmd(char *cmd, char **envp, s_data *data)
 {
     char **path;
     char **cmd_cut;
@@ -88,11 +88,12 @@ void    exe_my_cmd(char *cmd, char **envp)
     ft_error("exec error");
 }
 
-int main(int ac, char **av, char **envp)
-{
-    if (ac > 1)
-    {
-        exe_my_cmd(av[1], envp);
-    }
-    return (0);
-}
+// int main(int argc, char **argv, char **envp)
+// {
+//     if (argc > 1)
+//     {
+//         s_data *data = init_variable(argc, argv, envp);
+//         exe_my_cmd(argv[1], envp, data);
+//     }
+//     return (0);
+// }
