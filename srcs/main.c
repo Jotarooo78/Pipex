@@ -6,33 +6,35 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:29:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/08 15:32:44 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/08 17:07:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-s_data    *init_variable(int argc, char **argv, char **envp)
+bool    init_variable(int argc, char **argv, char **envp,s_data *data)
 {
-    s_data *data;
-    int nb_cmd;
-
-    nb_cmd = argc - 3;
-    data = malloc(sizeof(s_data));
-    if (data == NULL)
-        return (NULL);
-    data->pids = malloc(sizeof(pid_t) * nb_cmd);
-    if (data->pids == NULL)
+    printf("BEFORE:\n;");
+    for(int i = 0;argv[i];i++)
     {
-        free(data);
-        return (NULL);
+        printf("%s\n",argv[i]);
+        i++;
     }
-    data->argc = argc;
-    data->argv = argv;
+    data->pids = malloc(sizeof(pid_t) * argc - 3);
+    if (data->pids == NULL)
+        return (false); 
+    data->outfile = argv[argc-1];
+    data->infile = argv[1];
+    data->cmd = argv + 2;
+    data->n_cmd = argc -3;
     data->envp = envp;
-    data->index = 2;
-    data->begin = 2;
-    return (data);
+    for(int i = 0;i <= data->n_cmd;i++)
+    {
+        printf("%s\n",data->cmd[i]);
+        i++;
+    }
+    printf("infile:%s\noutfile:%s\n",data->infile,data->outfile);
+    return (true);
 }
 
 int main(int argc, char **argv, char **envp)

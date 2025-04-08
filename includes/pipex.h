@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:47:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/08 14:01:40 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/08 17:00:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,36 @@
 # define  EXIT_FAILURE 1
 # define  EXIT_SUCCESS 0
 
+#define STDIN 0
+#define STDOUT 1 
+#define STDERR 2
+#define READ 0 
+#define WRITE 1
+
+// typedef struct s_data
+// {
+//     pid_t   *pids;
+//     int index;
+//     int begin;
+//     char **envp;
+//     char **argv;
+//     int argc;
+    
+// }   s_data;
+
 typedef struct s_data
 {
     pid_t   *pids;
-    int index;
-    int begin;
+    int n_cmd;
+    char **cmd;
     char **envp;
-    char **argv;
-    int argc;
-    
+    char* infile;
+    char* outfile;
 }   s_data;
 
 // parcing functions
 
-s_data    *init_variable(int argc, char **argv, char **envp);
+bool    init_variable(int argc, char **argv, char **envp,s_data *data);
 void	free_array(char **split);
 void    free_variable(s_data *data);
 void ft_error(char *str);
