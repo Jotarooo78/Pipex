@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/07 15:45:56 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/07 17:36:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void    exe_my_cmd(char *cmd, char **envp, s_data *data)
     free_array(path);
     free_array(cmd_cut);
     ft_error("exec error");
+    exit(1);
 }
 
 // int main(int argc, char **argv, char **envp)

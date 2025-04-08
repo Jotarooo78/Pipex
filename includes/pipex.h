@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:47:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/07 16:11:02 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/08 14:01:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 
 typedef struct s_data
 {
-    pid_t   *pid;
+    pid_t   *pids;
     int index;
+    int begin;
     char **envp;
     char **argv;
     int argc;
@@ -38,9 +39,12 @@ typedef struct s_data
 
 s_data    *init_variable(int argc, char **argv, char **envp);
 void	free_array(char **split);
-int ft_error(char *str);
-void    pipe_function(int fd[2], s_data *data);
+void    free_variable(s_data *data);
+void ft_error(char *str);
+pid_t    pipe_function(s_data *data);
+void    exe_my_cmd(char *cmd, char **envp, s_data *data);
 char    *get_command_path(char *cmd, char **envp);
+void manage_pids_wait(int argc, char **argv, char **envp);
 
 
 #endif

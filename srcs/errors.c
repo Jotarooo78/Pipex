@@ -15,13 +15,10 @@
 
 void    free_variable(s_data *data)
 {
-    int i;
-
-    i = 0;
     if (data == NULL)
         return ;
-    if (data->pids != NULL)
-        free(data->pids);
+    if (data->pid != NULL)
+        free(data->pid);
     free(data);
 }
 
@@ -38,7 +35,7 @@ void    free_array(char **array)
     free(array);
 }
 
-int ft_error(char *str)
+void ft_error(char *str)
 {
     perror(str);
 }
