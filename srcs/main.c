@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:29:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/09 13:53:03 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/09 13:58:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool    init_variable(int argc, char **argv, char **envp, t_data *data)
 
 int main(int argc, char **argv, char **envp)
 {
-    if (argc != 5)
+    if (argc != 4)
     {
         manage_pids_wait(argc, argv, envp);
     }
