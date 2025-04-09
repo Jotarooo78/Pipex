@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/09 13:40:29 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/09 15:20:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool    exec(char **path, char *cmd_cut, char **cmd, char **envp)
         full_path = join_slash(path[i], cmd_cut);
         {
             if (full_path == NULL)
-            return (true);
+                return (true);
         }
         if (access(full_path, F_OK | X_OK) == 0)
             execve(full_path, cmd, envp);
