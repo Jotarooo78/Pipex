@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/07 17:36:41 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/09 13:40:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char    *join_slash(char *path, char *cmd_cut)
     return (full_path);
 }
 
-int    exec(char **path, char *cmd_cut, char **cmd, char **envp)
+bool    exec(char **path, char *cmd_cut, char **cmd, char **envp)
 {
     char *full_path;
     int i;
@@ -57,18 +57,20 @@ int    exec(char **path, char *cmd_cut, char **cmd, char **envp)
     while (path[i])
     {
         full_path = join_slash(path[i], cmd_cut);
-        if (full_path == NULL)
-            return (0);
+        {
+            if (full_path == NULL)
+            return (true);
+        }
         if (access(full_path, F_OK | X_OK) == 0)
             execve(full_path, cmd, envp);
         free(full_path);
         i++;
     }
-    return (1);
+    return (false);
 }
 
 
-void    exe_my_cmd(char *cmd, char **envp, s_data *data)
+void    exe_my_cmd(char *cmd, char **envp, t_data *data)
 {
     char **path;
     char **cmd_cut;
@@ -85,15 +87,14 @@ void    exe_my_cmd(char *cmd, char **envp, s_data *data)
     exec(path, cmd_cut[0], cmd_cut, envp);
     free_array(path);
     free_array(cmd_cut);
-    ft_error("exec error");
-    exit(1);
+    ft_error("command not found");
 }
 
 // int main(int argc, char **argv, char **envp)
 // {
 //     if (argc > 1)
 //     {
-//         s_data *data = init_variable(argc, argv, envp);
+//         t_data data = init_variable(argc, argv, envp);
 //         exe_my_cmd(argv[1], envp, data);
 //     }
 //     return (0);
