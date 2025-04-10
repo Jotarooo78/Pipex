@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/09 15:20:50 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/10 20:07:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void    exe_my_cmd(char *cmd, char **envp, t_data *data)
     exec(path, cmd_cut[0], cmd_cut, envp);
     free_array(path);
     free_array(cmd_cut);
-    ft_error("command not found");
+    ft_error("command not found", 127);
 }
 
 // int main(int argc, char **argv, char **envp)

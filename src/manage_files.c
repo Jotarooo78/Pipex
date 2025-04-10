@@ -22,7 +22,7 @@ void    open_infile(t_data *data, int i, int *pipe_fd)
     {
         dup2(pipe_fd[WRITE], STDOUT);
         close(pipe_fd[WRITE]);
-        ft_error("infile opening error");
+        ft_error("infile opening error", 1);
     }
     dup2(fd, STDIN);
     close(fd);
@@ -38,7 +38,7 @@ void    open_outfile(t_data *data, int i, int *pipe_fd)
     {
         dup2(pipe_fd[WRITE], STDOUT);
         close(pipe_fd[WRITE]);
-        ft_error("outfile opening error");
+        ft_error("outfile opening error", 1);
     }
     dup2(fd, STDOUT);
     close(fd);

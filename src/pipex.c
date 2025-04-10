@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:19:35 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/10 19:37:28 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/10 20:05:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void    pipe_function(t_data *data)
     while (data->cmd[i])
     {
         if (pipe(pipe_fd) == -1)
-            ft_error("pipe error");
+            ft_error("pipe error", 1);
         pid = fork();
         if (pid == -1)
-            (ft_error("fork error"));
+            (ft_error("fork error", 1));
         if (pid == 0)
             call_child(data, pipe_fd, i);
         else
@@ -68,7 +68,7 @@ void manage_pids_wait(int argc, char **argv, char **envp)
 {
     t_data data;
     
-    if (init_variable(argc, argv, envp,&data) == false)
+    if (init_variable(argc, argv, envp, &data) == false)
         return;
     pipe_function(&data);
     exit(0);

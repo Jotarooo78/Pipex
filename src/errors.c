@@ -26,8 +26,8 @@ void    free_array(char **array)
     free(array);
 }
 
-void ft_error(char *str)
+void ft_error(char *str, int code_error)
 {
     perror(str);
-    exit(0);
+    exit(code_error);
 }
