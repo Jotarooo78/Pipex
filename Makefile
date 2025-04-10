@@ -2,13 +2,13 @@ NAME = pipex
 
 CC = cc
 
-SRCS = srcs/errors.c srcs/get_path.c srcs/main.c srcs/pipex.c
+SRC = src/errors.c src/get_path.c src/main.c src/pipex.c src/manage_files.c
 INCLUDES = includes/pipex.h libft/libft.h
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-OBJ = $(SRCS:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Werror -Wall -g3 -I $(LIBFT_DIR)
 

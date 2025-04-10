@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:47:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/09 16:02:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/10 19:03:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ bool    init_variable(int argc, char **argv, char **envp, t_data *data);
 void	free_array(char **split);
 void ft_error(char *str);
 void    pipe_function(t_data *data);
+void    open_infile(t_data *data, int i, int *pipe_fd);
+void    open_outfile(t_data *data, int i, int *pipe_fd);
 void    exe_my_cmd(char *cmd, char **envp, t_data *data);
 void manage_pids_wait(int argc, char **argv, char **envp);
 

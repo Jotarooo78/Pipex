@@ -1,9 +1,0 @@
-total 124
--rw-r--r-- 1 armaunito armaunito   598 Apr  7 14:38 Makefile
-drwxr-xr-x 2 armaunito armaunito  4096 Apr  5 21:53 includes
--rw-r--r-- 1 armaunito armaunito    74 Apr  5 21:53 infile.txt
-drwxr-xr-x 2 armaunito armaunito  4096 Apr  5 22:23 libft
--rw-r--r-- 1 armaunito armaunito     0 Apr  8 15:42 ls -l
--rwxr-xr-x 1 armaunito armaunito 99704 Apr  8 15:42 pipex
-drwxr-xr-x 2 armaunito armaunito  4096 Apr  8 15:32 srcs
--rw-r--r-- 1 armaunito armaunito     2 Apr  8 15:42 wc -l
