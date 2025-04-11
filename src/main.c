@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:29:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/11 18:46:36 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:06:24 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,24 @@
 
 bool    init_variable(int argc, char **argv, char **envp, t_data *data)
 {
+    int i;
+
+    i = 0;
     data->outfile = argv[argc - 1];
     data->infile = argv[1];
     data->cmd = argv + 2;
     data->cmd[argc - 3] = NULL;
     data->n_cmd = argc - 3;
     data->envp = envp;
+    while (i < data->n_cmd)
+    {
+        if (data->cmd[i][0] == '\0')
+        {
+            ft_error("not enough error", 1);
+            return (false);
+        }
+        i++;
+    }
     return (true);
 }
 
