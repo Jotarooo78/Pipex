@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:47:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/10 20:04:48 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 17:18:20 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 typedef struct s_data
 {
     int     n_cmd;
+    int    last_cmd;
     char    **cmd;
     char    **envp;
     char    *infile;
@@ -46,7 +47,6 @@ void    pipe_function(t_data *data);
 void    open_infile(t_data *data, int i, int *pipe_fd);
 void    open_outfile(t_data *data, int i, int *pipe_fd);
 void    exe_my_cmd(char *cmd, char **envp, t_data *data);
-void manage_pids_wait(int argc, char **argv, char **envp);
 
 
 #endif

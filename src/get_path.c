@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/10 20:07:31 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 17:47:57 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char    **get_path(char **envp)
         }
         i++;
     }
-    ft_error("path not found"); 
+    ft_error("path not found", 1); 
     return (NULL);
 }
 

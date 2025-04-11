@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:19:35 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/10 20:05:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 18:01:07 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ void    setup_child(t_data *data, int *pipe_fd, int i)
     exe_my_cmd(data->cmd[i], data->envp, data);
 }
 
-bool    call_child(t_data *data, int *pipe_fd, int i)
+void    call_child(t_data *data, int *pipe_fd, int i)
 {
     close(pipe_fd[READ]);
     dup2(pipe_fd[WRITE], STDOUT);
     close(pipe_fd[WRITE]);
     setup_child(data, pipe_fd, i);
-    exit(0);
 }
 
 void    call_parent(t_data *data, int *pipe_fd)
@@ -41,13 +40,28 @@ void    call_parent(t_data *data, int *pipe_fd)
     close(pipe_fd[READ]);
 }
 
+void    wait_function(int *pids, int size)
+{
+    int i;
+    
+    i = 0;
+    while (i < size)
+    {
+        waitpid(pids[i], NULL, 0);
+        i++;
+    }
+    free(pids);
+}
+
 void    pipe_function(t_data *data)
 {
     pid_t pid;
     int i;
     int pipe_fd[2];
+    int *pids;
     
     i = 0;
+    pids = malloc(sizeof(int) * data->n_cmd);
     while (data->cmd[i])
     {
         if (pipe(pipe_fd) == -1)
@@ -58,19 +72,11 @@ void    pipe_function(t_data *data)
         if (pid == 0)
             call_child(data, pipe_fd, i);
         else
+        {
+            pids[i] = pid;
             call_parent(data, pipe_fd);
+        }   
         i++;
     }
-    wait(NULL);
-}
-
-void manage_pids_wait(int argc, char **argv, char **envp)
-{
-    t_data data;
-    
-    if (init_variable(argc, argv, envp, &data) == false)
-        return;
-    pipe_function(&data);
-    exit(0);
-    return;
+    wait_function(pids, data->n_cmd);
 }
