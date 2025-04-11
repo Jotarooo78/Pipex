@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:47:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/11 17:18:20 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:26:38 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 typedef struct s_data
 {
     int     n_cmd;
-    int    last_cmd;
     char    **cmd;
     char    **envp;
     char    *infile;

@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:54:43 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/11 17:47:57 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:55:38 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,20 @@ bool    exec(char **path, char *cmd_cut, char **cmd, char **envp)
                 return (true);
         }
         if (access(full_path, F_OK | X_OK) == 0)
+        {
             execve(full_path, cmd, envp);
+        }
         free(full_path);
         i++;
     }
     return (false);
 }
 
-
 void    exe_my_cmd(char *cmd, char **envp, t_data *data)
 {
     char **path;
     char **cmd_cut;
- 
+
     cmd_cut = ft_split(cmd, ' ');
     if (cmd_cut == NULL)
         return ;

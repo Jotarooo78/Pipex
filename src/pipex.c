@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:19:35 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/11 18:01:07 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:57:41 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void    pipe_function(t_data *data)
     
     i = 0;
     pids = malloc(sizeof(int) * data->n_cmd);
-    while (data->cmd[i])
+    while (data->cmd[i] != NULL)
     {
         if (pipe(pipe_fd) == -1)
             ft_error("pipe error", 1);
