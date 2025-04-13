@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:19:35 by armosnie          #+#    #+#             */
-/*   Updated: 2025/04/13 14:15:19 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:21:37 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	call_parent(t_data *data, int *pipe_fd)
 
 void	wait_child(void)
 {
-	while (errno != ECHILD)
-		wait(NULL);
+	while (wait(NULL) > 0)
+		;
 }
 
 void	pipe_function(t_data *data)
@@ -49,7 +49,7 @@ void	pipe_function(t_data *data)
 	i = 0;
 	while (data->cmd[i] != NULL)
 	{
-		if (pipe(pipe_fd) == -1)
+		if (!(i == data->n_cmd -1) && pipe(pipe_fd) == -1)
 			ft_error("pipe error", 1);
 		pid = fork();
 		if (pid == -1)
@@ -60,5 +60,6 @@ void	pipe_function(t_data *data)
 			call_parent(data, pipe_fd);
 		i++;
 	}
+	close(STDIN);
 	wait_child();
 }
